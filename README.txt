@@ -274,17 +274,10 @@ sudo dd if=notmain.header of=/dev/sdX bs=512 seek=32800
 
 works.
 
-
-
-
-
-
-
-
-make CROSS_COMPILE=riscv64-none-elf- p=sun20iw1p1 clean
-make CROSS_COMPILE=riscv64-none-elf- p=sun20iw1p1 mmc
-
-sudo dd if=/dev/zero of=/dev/sdf bs=1M count=200
-sudo dd if=../boot0_sdcard_sun20iw1p1.bin of=/dev/sdf bs=8192 seek=16
-sudo dd if=../notmain.header of=/dev/sdf bs=512 seek=32800
+Looking at the sun20... code, there is a header in front of that
+code that I guess the on chip code uses.  Has dram parameters and uart
+config stuff, etc.  I decided not to mess with it.  If anything I would
+just hack at that source if I wanted to do something custom, but
+the secondary loader is relatively easy and works with a stock
+first level loader.
 
